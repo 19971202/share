@@ -2,7 +2,7 @@
   <div class="share">
     <p>シェア</p>
     <textarea v-model="share"></textarea>
-    <div>
+    <div @click="send">
       <button>シェアする</button>
     </div>
   </div>
@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     send() {
-      if(this.share === "") {
+      if (this.share === "") {
         alert("シェアする内容を入力してください");
       } else {
         axios

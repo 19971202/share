@@ -111,4 +111,8 @@ button {
   margin: 0 0 0 auto;
 }
 
+input {
+  color: black;
+}
+
 </style>

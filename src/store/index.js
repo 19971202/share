@@ -44,7 +44,7 @@ export default new Vuex.Store({
         }
       );
       commit("auth", responseLogin.data.auth);
-      commit("user", responseUser.data[0]);
+      commit("user", responseUser.data.data[0]);
       router.replace("/home");
     },
     logout({ commit }) {
