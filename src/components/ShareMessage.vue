@@ -22,7 +22,7 @@ export default {
         alert("シェアする内容を入力してください");
       } else {
         axios
-          .post("https://blooming-basin-38341.herokuapp.com/api/shares", {
+          .post("https://enigmatic-garden-88523.herokuapp.com/api/shares", {
             user_id: this.$store.state.user.id,
             share: this.share,
           })

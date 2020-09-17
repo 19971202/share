@@ -3,10 +3,10 @@
     <div v-for="(value, key, index) in shares" :key="index">
       <div class="message">
         <div class="flex">
-          <p class="name">{{value.name}}</p>
+          <p class="name">{{ value.name }}</p>
           <img class="icon" src="../assets/heart.png" @click="fav(key)" alt />
-          <p class="number">{{value.like.length}}</p>
-          <img class="icon" src="../assets/cross.png" @click="del(fav)" alt v-if="path && profile" />
+          <p class="number">{{ value.like.length }}</p>
+          <img class="icon" src="../assets/cross.png" @click="del(key)" alt v-if="path && profile" />
           <img class="icon detail" src="../assets/detail.png" @click="$router.push({
             path: '/detail/' + value.item.id,
             params: { id: value.item.id },
@@ -38,7 +38,7 @@ export default {
         this.shares[index].like.forEach((element) => {
           if (element.user_id == this.$store.state.user.id) {
             axios
-              .delete("https://blooming-basin-38341.herokuapp.com/api/like", {
+              .delete("https://enigmatic-garden-88523.herokuapp.com/api/like", {
                 data: {
                   share_id: this.shares[index].item.id,
                   user_id: this.$store.state.user.id,
@@ -55,7 +55,7 @@ export default {
         });
       } else {
         axios
-          .post("https://blooming-basin-38341.herokuapp.com/api/like", {
+          .post("https://enigmatic-garden-88523.herokuapp.com/api/like", {
             share_id: this.shares[index].item.id,
             user_id: this.$store.state.user.id,
           })
@@ -71,7 +71,7 @@ export default {
     del(index) {
       axios
         .delete(
-          "https://blooming-basin-38341.herokuapp.com/api/shares" + this.shares[index].item.id
+          "https://enigmatic-garden-88523.herokuapp.com/api/shares" + this.shares[index].item.id
         )
         .then((response) => {
           console.log(response);
@@ -84,12 +84,12 @@ export default {
     async getShares() {
       let data = [];
       let shares = await axios.get(
-        "https://blooming-basin-38341.herokuapp.com/api/shares"
+        "https://enigmatic-garden-88523.herokuapp.com/api/shares"
       );
       for (let i = 0; i < shares.data.data.length; i++) {
         await axios
           .get(
-            "https://blooming-basin-38341.herokuapp.com/api/shares/" +
+            "https://enigmatic-garden-88523.herokuapp.com/api/shares/" +
               shares.data.data[i].id
           )
           .then((response) => {

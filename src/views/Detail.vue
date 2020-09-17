@@ -45,7 +45,7 @@ export default {
   methods: {
     send() {
       axios
-        .post("https://blooming-basin-38341.herokuapp.com/api/comment", {
+        .post("https://enigmatic-garden-88523.herokuapp.com/api/comment", {
           share_id: this.id,
           user_id: this.$store.state.user.id,
           content: this.content,
@@ -61,7 +61,7 @@ export default {
     },
     comment() {
       axios
-        .get("https://blooming-basin-38341.herokuapp.com/api/shares/" + this.id)
+        .get("https://enigmatic-garden-88523.herokuapp.com/api/shares/" + this.id)
         .then((response) => {
           this.data = response.data.comment;
         });
@@ -101,6 +101,10 @@ export default {
 .title p {
   font-size: 20px;
   font-weight: bold;
+}
+
+.share-message {
+  border-bottom: 1px solid white;
 }
 
 .comment-title {
