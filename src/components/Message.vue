@@ -6,13 +6,27 @@
           <p class="name">{{ value.name }}</p>
           <img class="icon" src="../assets/heart.png" @click="fav(key)" alt />
           <p class="number">{{ value.like.length }}</p>
-          <img class="icon" src="../assets/cross.png" @click="del(key)" alt v-if="path && profile" />
-          <img class="icon detail" src="../assets/detail.png" @click="$router.push({
-            path: '/detail/' + value.item.id,
-            params: { id: value.item.id },
-          })" alt v-if="profile" />
+          <img
+            class="icon"
+            src="../assets/cross.png"
+            @click="del(key)"
+            alt
+            v-if="path && profile"
+          />
+          <img
+            class="icon detail"
+            src="../assets/detail.png"
+            @click="
+              $router.push({
+                path: '/detail/' + value.item.id,
+                params: { id: value.item.id },
+              })
+            "
+            alt
+            v-if="profile"
+          />
         </div>
-        <p class="text">{{value.share}}</p>
+        <p class="text">{{ value.item.share }}</p>
       </div>
     </div>
   </div>
@@ -21,7 +35,7 @@
 <script>
 import axios from "axios";
 export default {
-  props:["id"],
+  props: ["id"],
   data() {
     return {
       shares: [],
@@ -35,6 +49,7 @@ export default {
         return value.user_id == this.$store.state.user.id;
       });
       if (result) {
+        console.log(result);
         this.shares[index].like.forEach((element) => {
           if (element.user_id == this.$store.state.user.id) {
             axios
@@ -51,7 +66,7 @@ export default {
                   force: true,
                 });
               });
-          }
+          } 
         });
       } else {
         axios
@@ -71,7 +86,8 @@ export default {
     del(index) {
       axios
         .delete(
-          "https://enigmatic-garden-88523.herokuapp.com/api/shares" + this.shares[index].item.id
+          "https://enigmatic-garden-88523.herokuapp.com/api/shares/" +
+            this.shares[index].item.id
         )
         .then((response) => {
           console.log(response);
